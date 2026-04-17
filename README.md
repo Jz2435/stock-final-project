@@ -43,3 +43,5 @@ Data fields include:
    git clone <your-github-repo-link>
    cd stock_final_project
    ```
+
+The dataset (TSLA.csv) is included to ensure full reproducibility.
