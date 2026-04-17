@@ -6,7 +6,7 @@ from pathlib import Path
 
 from sklearn.model_selection import train_test_split
 
-from stock_project.data_loader import download_stock_data
+from stock_project.data_loader import load_stock_data_with_fallback
 from stock_project.features import add_technical_features, create_supervised_dataset
 from stock_project.model import train_linear_regression_model, evaluate_model
 from stock_project.risk import calculate_volatility, calculate_max_drawdown
@@ -14,12 +14,19 @@ from stock_project.visualize import plot_price_and_moving_averages
 
 
 def main() -> None:
-    ticker = "AAPL"
+    ticker = "TSLA"
     start = "2020-01-01"
     end = "2025-01-01"
+    data_file = "HistoricalData_1776395806851.csv"
 
-    print("Downloading stock data...")
-    df = download_stock_data(ticker=ticker, start=start, end=end)
+    print("Loading stock data (online first, local fallback)...")
+    df, source = load_stock_data_with_fallback(
+        file_path=data_file,
+        ticker=ticker,
+        start=start,
+        end=end,
+    )
+    print(f"Data source: {source}")
 
     print("Engineering features...")
     df = add_technical_features(df)

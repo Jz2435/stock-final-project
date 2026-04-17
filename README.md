@@ -6,11 +6,15 @@ This project analyzes historical stock price data from Yahoo Finance, builds a s
 
 ## Dataset
 
-The dataset is downloaded directly from Yahoo Finance using the `yfinance` Python package.
+The project uses a local historical price CSV file in the workspace:
 
-Example ticker used in this project:
+- HistoricalData_1776395806851.csv
 
-- AAPL (Apple Inc.)
+The current pipeline reads this file directly instead of downloading live data at runtime.
+
+Example ticker represented in the dataset:
+
+- TSLA (Tesla, Inc.)
 
 Data fields include:
 
